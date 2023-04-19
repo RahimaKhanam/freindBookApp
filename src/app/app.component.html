@@ -1,20 +1,29 @@
-<div class="bg">
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    <form>
-        <h3>Login Here</h3>
-
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username">
-
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
-
-        <button type="button" class="btn btn-white">Log In</button>
-        <div class="btn2">
-            New User?<button class="btn btn-link">Register</button >
+<nav class="navbar navbar-dark navbar-expand-lg bg-primary justify-content-center">
+    <div class="container">
+        <a class="navbar-brand d-flex w-50 me-auto">FriendBook</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar3">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+            <!-- <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/user" routerLinkActive="active">Users</a>
+                </li>
+            </ul> -->
+            <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+                </li>
+            </ul>
         </div>
-    </form>
-</div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
+<!-- <login></login> -->
