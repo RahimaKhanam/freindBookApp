@@ -1,13 +1,13 @@
 .bg {
 	background-color: rgba(159, 195, 219, 0.842) !important;
 	width: 98.93vw;
-	height: 95vh;
+	height: 110vh;
 
 	.background {
 		width: 450px;
 		height: 520px;
 		position: absolute;
-		transform: translate(-40%, -45%);
+		transform: translate(-40%, -40%);
 		left: 50%;
 		top: 50%;
 
@@ -21,7 +21,7 @@
 				background: linear-gradient(#1845ad,
 						#23a2f6);
 				left: -290px;
-				top: -40px;
+				top: -80px;
 			}
 
 			&:last-child {
@@ -29,13 +29,13 @@
 						#ff512f,
 						#f09819);
 				right: -200px;
-				bottom: -80px;
+				bottom: -120px;
 			}
 		}
 	}
 
 	form {
-		height: 500px;
+		height: 600px;
 		width: 800px;
 		background-color: rgba(255, 255, 255, 0.13);
 		position: absolute;
@@ -74,7 +74,7 @@
 			font-weight: 500;
 		}
 
-		input {
+		input, select {
 			display: block;
 			height: 50px;
 			width: 100%;
