@@ -49,7 +49,7 @@
 		padding: 35px;
 
 		* {
-			color: black;
+			// color: black;
 			letter-spacing: 0.5px;
 			outline: none;
 			border: none;
@@ -111,5 +111,14 @@
 				color: #1845ad !important;
 			}
 		}
+
+		.text-danger{
+			margin: 1% 0;
+		}
 	}
+}
+
+.spinner-border{
+	background-color: white;
+	// color: white;
 }

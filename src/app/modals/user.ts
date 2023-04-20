@@ -1,8 +1,8 @@
 export class User {
-    firstName!: string;
-    lastnName !: string;
+    firstName : string | undefined;
+    lastName !: string;
     email !: string;
-    dob !: Date;
+    dob !: string;
     gender !: string;
     password !: string;
 }

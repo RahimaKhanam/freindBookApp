@@ -8,56 +8,100 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="firstName">First Name</label>
-                <input type="text" placeholder="First Name" id="firstName" formControlName="firstName">
+                <input type="text" placeholder="First Name" id="firstName" formControlName="firstName"
+                    class="form-control"
+                    [ngClass]="{'is-invalid':!registerForm.get('firstName')?.valid && registerForm.get('firstName')?.touched}">
+                <div class="text-danger text-small"
+                    *ngIf="registerForm.get('firstName')?.errors?.['required'] && registerForm.get('firstName')?.touched">
+                    First Name is required
+                </div>
             </div>
 
             <div class="col-md-6">
                 <label for="lastName">Last Name</label>
-                <input type="text" placeholder="Last Name" id="lastName" formControlName="lastName">
+                <input type="text" placeholder="Last Name" id="lastName" formControlName="lastName" class="form-control"
+                    [ngClass]="{'is-invalid':!registerForm.get('lastName')?.valid && registerForm.get('lastName')?.touched}">
+                <div class="text-danger text-small"
+                    *ngIf="registerForm.get('lastName')?.errors?.['required'] && registerForm.get('lastName')?.touched">
+                    Last Name is required
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <label for="username">Username</label>
                 <input type="text" placeholder="Username" id="username" formControlName="username">
-            </div>
+            </div> -->
             <div class="col-md-6">
                 <label for="email">Email</label>
-                <input type="email" placeholder="Email" id="email" formControlName="email">
+                <input type="email" placeholder="Email" id="email" formControlName="email" class="form-control"
+                    [ngClass]="{'is-invalid':!registerForm.get('email')?.valid && registerForm.get('email')?.touched}">
+                <div class="text-danger text-small"
+                    *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched">
+                    Email is required
+                </div>
+                <div class="text-danger text-small"
+                    *ngIf="registerForm.get('email')?.errors?.['pattern'] && registerForm.get('email')?.touched">
+                    Enter a valid email address, e.g., name@example.com
+                </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-6">
                 <label for="gender">Gender</label>
                 <select class="form-select" aria-label="Default select example" id="gender" name="gender"
-                    formControlName="gender">
+                    formControlName="gender"
+                    [ngClass]="{'is-invalid':!registerForm.get('gender')?.valid && registerForm.get('gender')?.touched}">
                     <option value="" selected disabled>Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                 </select>
-            </div>
-            <div class="col-md-6">
-                <label for="dob">Date of Birth</label>
-                <input type="date" placeholder="Choose Date" id="dob" formControlName="dob">
+                <div class="text-danger text-small"
+                    *ngIf="registerForm.get('gender')?.errors?.['required'] && registerForm.get('gender')?.touched">
+                    Gender is required
+                </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
-                <label for="password">Password</label>
-                <input type="password" placeholder="Password" id="password" formControlName="password">
+                <label for="dob">Date of Birth</label>
+                <input type="date" placeholder="Choose Date" id="dob" formControlName="dob" class="form-control"
+                    [ngClass]="{'is-invalid':!registerForm.get('dob')?.valid && registerForm.get('dob')?.touched}">
+                <div class="text-danger text-small"
+                    *ngIf="registerForm.get('dob')?.errors?.['required'] && registerForm.get('dob')?.touched">
+                    DOB is required
+                </div>
             </div>
+            <div class="col-md-6">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" id="password" formControlName="password"
+                    class="form-control"
+                    [ngClass]="{'is-invalid':!registerForm.get('password')?.valid && registerForm.get('password')?.touched}">
+                <div class="text-danger text-small"
+                    *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched">
+                    Password is required
+                </div>
+                <div class="text-danger text-small"
+                    *ngIf="registerForm.get('password')?.errors?.['pattern'] && registerForm.get('password')?.touched">
+                    Password should contain a capital letter, small letters, a special character, and numbers.
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
             <div class="col-md-6">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" placeholder="Confirm Password" id="confirmPassword"
                     formControlName="confirmPassword">
             </div>
-        </div>
+        </div> -->
 
-        <button type="button" class="btn btn-white">Register</button>
+        <button [disabled]="!registerForm.valid || loading" type="submit" class="btn btn-white">
+            <span *ngIf="loading" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr1"></span> -->
+            Register
+        </button>
         <div class="btn2">
             Existing User?<button class="btn btn-link">Login</button>
         </div>

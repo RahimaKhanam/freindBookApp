@@ -11,7 +11,7 @@ export class UserService {
 
   apiurl = 'http://3.17.216.66:3000/';
 
-  registerUser(newUser: User) {
-    return this.http.post<User>(this.apiurl + 'users/register', newUser)
+  registerUser(newUser: any) {
+    return this.http.post(this.apiurl + 'users/register', newUser)
   }
 }
