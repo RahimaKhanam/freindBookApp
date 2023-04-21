@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/modals/user';
+import { NewUser } from 'src/app/modals/user';
 import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
@@ -32,13 +32,13 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     this.loading = true;
 
-    let userData: User = {
+    let userData: NewUser = {
       firstName: this.registerForm.value.firstName as string,
       lastName: this.registerForm.value.lastName as string,
-      email: this.registerForm.value as string,
+      email: this.registerForm.value.email as string,
       dob: this.registerForm.value.dob as string,
-      gender: this.registerForm.value as string,
-      password: this.registerForm.value as string,
+      gender: this.registerForm.value.gender as string,
+      password: this.registerForm.value.password as string,
     }
 
     if (this.registerForm.valid) {

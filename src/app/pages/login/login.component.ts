@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticateUser } from 'src/app/modals/user';
 import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
@@ -25,24 +26,22 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     this.loading = true;
-    // let userData: User = {
-    //   firstName: this.registerForm.value.firstName,
-    //   lastName: this.registerForm.value.lastName,
-    //   email: this.registerForm.value,
-    //   dob: this.registerForm.value.dob,
-    //   gender: this.registerForm.value,
-    //   password: this.registerForm.value,
-    // }
-    // if (this.loginForm.valid) {
-    //   console.log(this.loginForm.value);
-    //   this.userService.registerUser(this.loginForm.value).subscribe((result: any) => {
-    //     this.toastr.success(result.message, 'Registered successfully')
-    //     this.router.navigate(['login'])
-    //   });
-    // } else {
-    //   this.toastr.warning('Please enter valid data.');
-    //   this.loading = false;
-    // }
+    let userData: AuthenticateUser = {
+      email: this.loginForm.value.email as string,
+      password: this.loginForm.value.password as string,
+    }
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value);
+      this.userService.authenticateUserLogin(userData).subscribe((result: any) => {
+        console.log(result);
+        sessionStorage.setItem('userData', JSON.stringify(result))
+        this.toastr.success("You have logged in successfully", 'Loggedin successfully')
+        this.router.navigate(['register'])
+      });
+    } else {
+      this.toastr.warning('Please enter valid data.');
+      this.loading = false;
+    }
   }
 
 }
