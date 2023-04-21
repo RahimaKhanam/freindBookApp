@@ -4,7 +4,12 @@
         <div class="shape"></div>
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
-        <h3>Register Here</h3>
+        <h3 [ngClass]="{'mt-4': registerForm.valid || (registerForm.get('firstName')?.untouched &&
+        registerForm.get('lastName')?.untouched &&
+        registerForm.get('email')?.untouched &&
+        registerForm.get('gender')?.untouched &&
+        registerForm.get('dob')?.untouched &&
+        registerForm.get('password')?.untouched) }">Register Here</h3>
         <div class="row">
             <div class="col-md-6">
                 <label for="firstName">First Name</label>
@@ -99,7 +104,6 @@
 
         <button [disabled]="!registerForm.valid || loading" type="submit" class="btn btn-white">
             <span *ngIf="loading" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr1"></span> -->
             Register
         </button>
         <div class="btn2">

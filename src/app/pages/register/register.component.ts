@@ -31,17 +31,19 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
     this.loading = true;
-    // let userData: User = {
-    //   firstName : this.registerForm.value.firstName ,
-    // lastName  : this.registerForm.value.lastName ,
-    // email  : this.registerForm.value ,
-    // dob : this.registerForm.value.dob,
-    // gender  : this.registerForm.value ,
-    // password  : this.registerForm.value ,
-    // }
+
+    let userData: User = {
+      firstName: this.registerForm.value.firstName as string,
+      lastName: this.registerForm.value.lastName as string,
+      email: this.registerForm.value as string,
+      dob: this.registerForm.value.dob as string,
+      gender: this.registerForm.value as string,
+      password: this.registerForm.value as string,
+    }
+
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
-      this.userService.registerUser(this.registerForm.value).subscribe((result: any) => {
+      this.userService.registerUser(userData).subscribe((result: any) => {
         this.toastr.success(result.message, 'Registered successfully')
         this.router.navigate(['login'])
       });
