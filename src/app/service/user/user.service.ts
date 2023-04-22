@@ -19,4 +19,8 @@ export class UserService {
   authenticateUserLogin(userData: AuthenticateUser): Observable<AuthenticateUser>{
     return this.http.post<AuthenticateUser>(this.apiurl + 'users/authenticate', userData)
   }
+
+  allUsers(){
+    return this.http.get(this.apiurl+ 'users/')
+  }
 }

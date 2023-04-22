@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    sessionStorage.clear()
   }
 
   loginUser() {
@@ -34,9 +35,13 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value);
       this.userService.authenticateUserLogin(userData).subscribe((result: any) => {
         console.log(result);
-        sessionStorage.setItem('userData', JSON.stringify(result))
+        sessionStorage.setItem('userData', JSON.stringify(result));
+        let userData = JSON.parse(sessionStorage['userData']);
+        let token = userData.token;
+        console.log(token);
+        
         this.toastr.success("You have logged in successfully", 'Loggedin successfully')
-        this.router.navigate(['register'])
+        this.router.navigate(['users'])
       });
     } else {
       this.toastr.warning('Please enter valid data.');
