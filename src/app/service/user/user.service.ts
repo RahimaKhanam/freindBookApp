@@ -23,4 +23,24 @@ export class UserService {
   allUsers(){
     return this.http.get(this.apiurl+ 'users/')
   }
+
+  getUserById(userId: any){
+    // key is _id
+    return this.http.get(this.apiurl+ 'users/' + userId)
+  }
+
+  getUserByEmail(email: any){
+    // key is email
+    return this.http.post(this.apiurl+ 'users/finduserbyemail', {email: email})
+  }
+
+  updateUserPhotoId(userId: any){
+    // send id and photoId
+    return this.http.post(this.apiurl+ 'users/updateuserphotoId', userId)
+  }
+
+  updateUser(updatedUser: any){
+    return this.http.put(this.apiurl + 'users/' + updatedUser.id, updatedUser)
+  }
+
 }
