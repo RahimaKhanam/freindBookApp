@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         console.log(token);
         
         this.toastr.success("You have logged in successfully", 'Loggedin successfully')
-        this.router.navigate(['users'])
+        this.router.navigate(['home'])
       });
     } else {
       this.toastr.warning('Please enter valid data.');
