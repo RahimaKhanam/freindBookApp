@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { UsersComponent } from './pages/users/users.component';
 import { InterceptorInterceptor } from './helpers/interceptor.interceptor';
+import { MaterialModule } from './material/material/material.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InterceptorInterceptor } from './helpers/interceptor.interceptor';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MaterialModule
   ],
   providers: [
     { 

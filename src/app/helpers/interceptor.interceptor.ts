@@ -6,6 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class InterceptorInterceptor implements HttpInterceptor {
@@ -16,17 +17,21 @@ export class InterceptorInterceptor implements HttpInterceptor {
     return token;
   }
 
-  constructor() {
-    this.getToken()
-   }
+  constructor(private router: Router) {
+  }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    request = request.clone({
-      setHeaders: ({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.getToken()}`
+    console.log(this.router.routerState.snapshot.url);
+
+    if (this.router.routerState.snapshot.url !== '/login' && this.router.routerState.snapshot.url !== '/register') {
+      // console.log("It should not exceute for login and register but executed.");
+      request = request.clone({
+        setHeaders: ({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.getToken()}`
+        })
       })
-    })
+    }
     return next.handle(request);
   }
 }

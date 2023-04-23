@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    sessionStorage.clear()
   }
 
   registerUser() {

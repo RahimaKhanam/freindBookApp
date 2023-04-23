@@ -5,14 +5,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-            <!-- <ul class="navbar-nav w-100 justify-content-center">
-                <li class="nav-item active">
-                    <a class="nav-link" routerLink="" routerLinkActive="active">Home</a>
-                </li>
+            <ul class="navbar-nav w-100 justify-content-center" *ngIf="isItemVisible">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/user" routerLinkActive="active">Users</a>
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
                 </li>
-            </ul> -->
+                <li class="nav-item"  *ngIf="isAdmin">
+                    <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+                </li>
+            </ul>
             <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
