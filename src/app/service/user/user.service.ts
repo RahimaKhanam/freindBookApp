@@ -11,6 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   apiurl = 'http://3.17.216.66:3000/';
+  userData: any;
 
   registerUser(newUser: NewUser): Observable<NewUser> {
     return this.http.post<NewUser>(this.apiurl + 'users/register', newUser)
@@ -43,16 +44,19 @@ export class UserService {
     return this.http.put(this.apiurl + 'users/' + updatedUser.id, updatedUser)
   }
 
+  getUserData(){
+    this.userData = sessionStorage.getItem('userData');
+    this.userData = JSON.parse(this.userData);
+    return this.userData;
+  }
+
   isLoggedIn() {
-    sessionStorage.getItem('userData')
     return sessionStorage.getItem('userData') != null;
   }
 
-  userData: any;
   isAdmin() {
-    this.userData = sessionStorage.getItem('userData');
-    this.userData = JSON.parse(this.userData);
-    let adminFlag = this.userData.isAdmin;
+    let data = this.getUserData();
+    let adminFlag = data.isAdmin;
     return adminFlag;
   }
 
