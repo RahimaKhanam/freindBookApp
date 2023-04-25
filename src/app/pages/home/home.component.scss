@@ -107,3 +107,23 @@
   // }
 }
 
+.create-post{
+  margin-bottom: 5%;
+  .card-header{
+    background-color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .card-body{
+    .form-control{
+      border: none;
+    }
+    .btn-primary{
+      margin-top: 2%;
+      width: 100%;
+    }
+  }
+}
+

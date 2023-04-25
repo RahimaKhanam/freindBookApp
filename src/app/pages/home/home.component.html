@@ -7,11 +7,22 @@
 
         <div class="col-md-6">
             <!-- Create postion section -->
+            <div class="card create-post">
+                <div class="card-header">
+                    Create Post
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="createPostForm" (ngSubmit)="createPost()">
+                        <textarea class="form-control" name="post" id="post" cols="30" rows="5" placeholder="What is in your mind?" formControlName="post"></textarea>
+                        <button type="submit" class="btn btn-primary" [disabled]="!createPostForm.valid">Post</button>
+                    </form>
+                </div>
+            </div>
             <!-- All posts section -->
             <div *ngFor="let post of allPostsData" class="all-posts">
                 <header>
                     <span class="dropdown">
-                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" role="button"
                             aria-expanded="false"></a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item">Update Post</a></li>
