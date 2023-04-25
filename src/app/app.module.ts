@@ -12,6 +12,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { InterceptorInterceptor } from './helpers/interceptor.interceptor';
 import { MaterialModule } from './material/material/material.module';
 import { HomeComponent } from './pages/home/home.component';
+import { SideProfileComponent } from './common/side-profile/side-profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './pages/home/home.component';
     LoginComponent,
     RegisterComponent,
     UsersComponent,
-    HomeComponent
+    HomeComponent,
+    SideProfileComponent
   ],
   imports: [
     BrowserModule,

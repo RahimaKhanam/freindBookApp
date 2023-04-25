@@ -2,36 +2,36 @@
     <div class="row">
         <div class="col-md-3">
             <!-- side section -->
-            <div class="card">
-                <img src="../../../assets/Images/user-icon.jpg" class="card-img-top" alt="user-icon">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">XXX Connections</li>
-                    <li class="list-group-item text-center">XXX Posts</li>
-                </ul>
-            </div>
+            <side-profile></side-profile>
         </div>
 
         <div class="col-md-6">
             <!-- Create postion section -->
             <!-- All posts section -->
-            <div id="wrapper">
-                <header class="cf">
-                    <img src="http://2016.igem.org/wiki/images/e/e0/Uclascrolldown.png" class="arrow" />
-                    <a><img class='profile-pic'
-                            src="../../../assets/Images/user-icon.jpg"></a>
+            <div *ngFor="let post of allPostsData" class="all-posts">
+                <header>
+                    <span class="dropdown">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-expanded="false"></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item">Update Post</a></li>
+                            <li><a class="dropdown-item" (click)="deletePost(post.id)">Delete Post</a></li>
+                        </ul>
+                    </span>
+                    <a><img class='profile-pic' src="../../../assets/Images/user-icon.jpg"></a>
                     <h1 class="name">
-                        <a>Tesla</a>
+                        <a>{{post.userName}}</a>
                     </h1>
-                    <p class="date">2 hr ago</p>
+                    <p class="date">{{post.createdDate | date:'mediumDate'}}, {{post.createdDate | date:'shortTime'}}
+                    </p>
                 </header>
 
-                <p class="status">Tesla drivers just passed 3 billion electric miles, saving the world 120M gallons of
-                    gas 👍</p>
+                <p class="caption">{{post.post}}</p>
                 <img class="img-content" src="https://www.filepicker.io/api/file/eZfHVHHRj6x3hKY7XgTr" />
 
-                <div class="action">
+                <!-- <div class="action">
                     <div class="like">
-                        <a href="#">
+                        <a>
                             <img src="https://1.bp.blogspot.com/-qns_lZPjg0I/VWY2dO1HN-I/AAAAAAAACVA/akLTMY7RJSk/s1600/Thumbs-up-facebook-icon-small.png"
                                 alt="thumbs up" />
                             <p>Like</p>
@@ -39,14 +39,14 @@
                     </div>
 
                     <div class="comment">
-                        <a href="#">
+                        <a>
                             <img src="https://s0.wp.com/wp-content/themes/vip/facebook-groups/img/message_icon.png" />
                             <p>Comment</p>
                         </a>
                     </div>
 
                     <div class="share">
-                        <a href="#">
+                        <a>
                             <img src="http://download.seaicons.com/icons/icons8/windows-8/512/Arrows-Redo-icon.png"
                                 alt="" />
                             <p>
@@ -54,7 +54,7 @@
                             </p>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>

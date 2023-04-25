@@ -1,47 +1,45 @@
+.all-posts {
+  margin: 0 0 5% 0;
+  border: 1px solid #D0D1D5;
+  border-radius: 5px;
+  padding: 12px;
 
-
-
-  
-  a {
-    text-decoration: none;
-    color: #385A97;
-  }
   header {
     padding: 0;
     position: relative;
+
+    .dropdown{
+      position: absolute;
+      width: 12px;
+      border: none;
+      height: auto;
+      right: 0px;
+
+      .dropdown-toggle{
+        color: grey;
+      }
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      /* 1 */
+      display: table;
+      /* 2 */
+    }
+
+    &:after {
+      clear: both;
+    }
   }
-  .status {
-    margin: 11px 0;
-  }
-  #wrapper {
-    margin: 0 0 5% 0;
-    border: 1px solid #D0D1D5;
-    border-radius: 5px;
-    padding: 12px;
-  }
-  
-  
-  
-  .arrow {
-    position: absolute;
-    width: 12px;
-    border: none;
-    height: auto;
-    right: 0px;
-  }
-  
+
   .profile-pic {
     width: 40px;
     height: auto;
     float: left;
     margin-right: 8px;
   }
-  
-  .name,
-  .date {
-    margin: 0;
-  }
-  
+
   .name {
     color: #385A97;
     font-size: 15px;
@@ -52,67 +50,60 @@
     font-size: 12px;
     color: #90949C;
   }
-  
-  main {
-    font-size: 13px;
+
+  .name,
+  .date {
+    margin: 0;
   }
-  
-  main .status {
-    margin-bottom: 11px;
+
+  .caption {
+    margin: 11px 0;
   }
-  
+
   .img-content {
     width: 100%;
     margin-bottom: 11px;
     border: 1px solid rgba(0, 0, 0, .1);
   }
+
+  // .action {
+  //   div {
+  //     display: inline-block;
   
-  .action a {
-    color: #7F7F7F;
-  }
+  //     &:nth-child(n + 2) {
+  //       margin-left: 20px;
+  //     }
   
-  .action div {
-    display: inline-block;
-  }
+  //     a {
+  //       color: #7F7F7F;
   
-  .action div p:hover {
-    text-decoration: underline;
-  }
+  //       img {
+  //         display: inline-block;
+  //         width: 18px;
+  //         vertical-align: text-bottom;
+  //       }
   
-  .action div:nth-child(n + 2) {
-    margin-left: 20px;
-  }
+  //       p {
+  //         display: inline-block;
   
-  .like img,
-  .comment img,
-  .share img {
-    display: inline-block;
-    width: 18px;
-    vertical-align: text-bottom;
-  }
+  //         &:hover {
+  //           text-decoration: underline;
+  //         }
+  //       }
+  //     }
+  //   }
   
-  .like p {
-    color: #1787FA;
-  }
+  //   .like {
+  //     p {
+  //       color: #1787FA;
+  //     }
+  //   }
   
-  .like p,
-  .comment p,
-  .share p {
-    display: inline-block;
-  }
-  
-  .share img {
-    opacity: .2;
-  }
-  
-  .cf:before,
-  .cf:after {
-    content: "";
-    /* 1 */
-    display: table;
-    /* 2 */
-  }
-  
-  .cf:after {
-    clear: both;
-  }
+  //   .share {
+  //     img {
+  //       opacity: .2;
+  //     }
+  //   }
+  // }
+}
+

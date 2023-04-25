@@ -18,10 +18,14 @@ export class PostsService {
     return this.http.get(this.apiurl+ 'posts/')
   }
 
-  getPostsByUserId(postId: any){
-    // key is user id
+  getPostsByPostId(postId: any){
+    // key is post id
     return this.http.get(this.apiurl+ 'posts/' + postId);
-    // return this.http.post(this.apiurl+ 'posts/findpostbyuserid', {id: postId})
+  }
+
+  getPostsByUserId(userId: any){
+    // key is user id
+    return this.http.post(this.apiurl+ 'posts/findpostbyuserid', {id: userId})
   }
 
   updateBulkPosts(updatePayLoad: any){
@@ -33,8 +37,8 @@ export class PostsService {
     return this.http.put(this.apiurl + 'posts/' + updatedPost.id, updatedPost)
   }
 
-  deletePost(deletedPost: any){
-    return this.http.delete(this.apiurl + 'posts/' + deletedPost.id)
+  deletePost(postId: any){
+    return this.http.delete(this.apiurl + 'posts/' + postId)
   }
 
 }
