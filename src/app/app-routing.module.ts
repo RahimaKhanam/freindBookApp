@@ -6,6 +6,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { NetworkComponent } from './pages/network/network.component';
+import { FriendsComponent } from './pages/friends/friends.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent,},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'network', component: NetworkComponent, canActivate: [AuthGuard]},
+  {path: 'friends', component: FriendsComponent, canActivate: [AuthGuard]},
   {path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '/login'}
 ];

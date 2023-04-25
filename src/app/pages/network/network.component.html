@@ -7,9 +7,9 @@
 
         <div class="col-md-9">
             <!-- Requests section -->
-            <div *ngIf="allRequests?.length; else noRequests">
-                <div *ngFor="let post of allRequests;" class="friend-request">
-                    <h3 class="card-header">Pending Requests</h3>
+            <div *ngIf="allRequests?.length; else noRequests" class="friend-request">
+                <h3 class="card-header">Pending Requests</h3>
+                <div *ngFor="let post of allRequests;">
                     <div class="friend-request-card card">
                         <div class="profile-picture">
                             <img src="../../../assets/Images/user-icon.jpg">
@@ -17,7 +17,7 @@
                         <div class="user-details">
                             <h1>
                                 <span *ngFor="let user of userData">
-                                    <a *ngIf="post.userId==user.id">{{user.firstName}} {{user.lastName}}</a>
+                                    <span *ngIf="post.userId==user.id">{{user.firstName}} {{user.lastName}}</span>
                                 </span>
                             </h1>
                             <h2>
@@ -27,27 +27,11 @@
                             </h2>
                         </div>
                         <div class="friend-request-actions">
-                            <button class="button button-primary" (click)="approveRequest(post.friendId, post.id)">Accept</button>
-                            <button class="button button-secondary" (click)="cancelRequest(post.friendId, post.id)">Decline</button>
+                            <button class="button button-primary" (click)="approveRequest(post)">Accept</button>
+                            <button class="button button-secondary" (click)="cancelRequest(post)">Decline</button>
                         </div>
                     </div>
                 </div>
-                <!-- <div *ngFor="let post of allRequests;" class="friend-request">
-                    <header>
-                        <button class="btn btn-primary">{{post.status}}</button>
-                        <a><img class='profile-pic' src="../../../assets/Images/user-icon.jpg"></a>
-                        <h1 class="name">
-                            <span *ngFor="let user of userData">
-                                <a *ngIf="post.userId==user.id">{{user.firstName}} {{user.lastName}}</a>
-                            </span>
-                        </h1>
-                        <p class="email">
-                            <span *ngFor="let user of userData">
-                                <span *ngIf="post.userId==user.id">{{user.email}}</span>
-                            </span>
-                        </p>
-                    </header>
-                </div> -->
             </div>
             <ng-template #noRequests>
                 <p class="default-text">You don't have any active requests !</p>

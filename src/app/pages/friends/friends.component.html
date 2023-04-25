@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- side section -->
+            <side-profile></side-profile>
+        </div>
+
+        <div class="col-md-6">
+            <!-- All friends section -->
+            <div *ngIf="allFriends?.length; else noFriends" class="active-friends">
+                <h3 class="heading">Active Friends</h3>
+                <div *ngFor="let post of allFriends;" class="friends-card">
+                    <header>
+                        <a><img class='profile-pic' src="../../../assets/Images/user-icon.jpg"></a>
+                        <h1 class="name">{{post.name}}</h1>
+                        <p class="email">{{post.email}}</p>
+                    </header>
+                </div>
+            </div>
+
+            <ng-template #noFriends>
+                <p class="default-text">You don't have any active Friends !</p>
+            </ng-template>
+        </div>
+    </div>
+</div>

@@ -14,6 +14,7 @@ import { MaterialModule } from './material/material/material.module';
 import { HomeComponent } from './pages/home/home.component';
 import { SideProfileComponent } from './common/side-profile/side-profile.component';
 import { NetworkComponent } from './pages/network/network.component';
+import { FriendsComponent } from './pages/friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NetworkComponent } from './pages/network/network.component';
     UsersComponent,
     HomeComponent,
     SideProfileComponent,
-    NetworkComponent
+    NetworkComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,

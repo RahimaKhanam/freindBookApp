@@ -19,7 +19,6 @@ export class NetworkComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInUser = this.userService.getUserData();
-    console.log(this.loggedInUser);
 
     this.getAllRequests();
 
@@ -27,7 +26,7 @@ export class NetworkComponent implements OnInit {
       // console.log("All Users", response);
       response.forEach((element: any) => {
         var createdDate = new Date(element.createdDate);
-        // this will display us only the users of 2023 and month april 
+        // we will display  only the users of 2023 and month april 
         // && it should not display the user who is logged in 
         if (createdDate.getFullYear() == 2023 && createdDate.getMonth() == 3
           && element.id != this.loggedInUser._id) {
@@ -46,6 +45,9 @@ export class NetworkComponent implements OnInit {
     this.friendsService.allRequests().subscribe((response: any) => {
       console.log("allRequests", response);
       response.forEach((element: any) => {
+        // To display only the pending request and also only the requests that were sent to the current loggedIn user
+        // To get this we will check the value with friendId since this keys stores id of the person to whom request was sent
+        // And since the request was sent to us so we check it with element.friendId == this.loggedInUser._id
         if (element.status == 'Request Pending' && element.friendId == this.loggedInUser._id) {
           this.allRequests.push(element);
         }
@@ -56,36 +58,38 @@ export class NetworkComponent implements OnInit {
 
   connect(id: any) {
     let sendRequest = {
-      userId: this.loggedInUser._id,
-      friendId: id,
-      status: "Request Pending"
+      userId: this.loggedInUser._id, // who is sending the request
+      friendId: id, // to whom request is sent
+      status: "Request Pending" // status
     }
     this.friendsService.createRequest(sendRequest).subscribe((response: any) => {
       this.toastr.success(response.message, 'Request Sent');
     })
   }
 
-  approveRequest(friendId: any, id: any) {
+  approveRequest(data: any) {
+    // We wont change the userId and friendId here, we will send back the same ids stored
+    // just with different status
     let sendRequest = {
-      userId: this.loggedInUser._id,
-      friendId: friendId,
+      userId: data.userId,
+      friendId: data.friendId,
       status: "You are friend"
     }
-    this.friendsService.updateFriendRequestById(id, sendRequest).subscribe((response: any) => {
+    this.friendsService.updateFriendRequestById(data.id, sendRequest).subscribe((response: any) => {
       this.toastr.success(response.message, 'Request Accepted');
-      this.getAllRequests();
+      window.location.reload()
     })
   }
 
-  cancelRequest(friendId: any, id: any) {
+  cancelRequest(data: any) {
     let sendRequest = {
-      userId: this.loggedInUser._id,
-      friendId: friendId,
+      userId: data.userId,
+      friendId: data.friendId,
       status: "Request Cancelled"
     }
-    this.friendsService.updateFriendRequestById(id, sendRequest).subscribe((response: any) => {
+    this.friendsService.updateFriendRequestById(data.id, sendRequest).subscribe((response: any) => {
       this.toastr.success(response.message, 'Request Cancelled');
-      this.getAllRequests();
+      window.location.reload()
     })
   }
 }
