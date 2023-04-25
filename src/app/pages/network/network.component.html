@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- side profile section -->
+            <side-profile></side-profile>
+        </div>
+
+        <div class="col-md-9">
+            <!-- Requests section -->
+            <div *ngIf="allRequests?.length; else noRequests">
+                <div *ngFor="let post of allRequests;" class="friend-request">
+                    <header>
+                        <button class="btn btn-primary">{{post.status}}</button>
+                        <a><img class='profile-pic' src="../../../assets/Images/user-icon.jpg"></a>
+                        <h1 class="name">
+                            <span *ngFor="let user of userData">
+                                <a *ngIf="post.userId==user.id">{{user.firstName}} {{user.lastName}}</a>
+                            </span>
+                        </h1>
+                        <p class="email">
+                            <span *ngFor="let user of userData">
+                                <span *ngIf="post.userId==user.id">{{user.email}}</span>
+                            </span>
+                        </p>
+                    </header>
+                </div>
+            </div>
+            <ng-template #noRequests>
+                <p class="default-text">You don't have any active requests !</p>
+            </ng-template>
+
+            <!-- Connect with others section -->
+            <div class="card friend-connect">
+                <p class="heading">
+                    Connect with people you may know from your organisation.
+                </p>
+                <div class="row">
+                    <div *ngFor="let user of userData" class="col-md-3">
+                        <div class="card connect-card"><img alt="user Avatar" class="user-image"
+                                src="../../../assets/Images/user-request-icon.png" />
+                            <h2>{{user.firstName}} {{user.lastName}} </h2>
+                            <p>{{user.email}} </p>
+                            <div class="buttongroup">
+                                <button class="btn btn-primary" (click)="connect(user.id)">
+                                    <span><img class="plus-icon" src="../../../assets/Images/plus.png"
+                                            alt="plus icon"></span>
+                                    Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,7 +18,7 @@ export class FriendsService {
     return this.http.get(this.apiurl+ 'friends/')
   }
 
-  getRequestsById(id: any){
+  getRequestsByFriendId(id: any){
     return this.http.get(this.apiurl+ 'friends/' + id);
   }
 

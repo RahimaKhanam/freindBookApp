@@ -13,6 +13,7 @@ import { InterceptorInterceptor } from './helpers/interceptor.interceptor';
 import { MaterialModule } from './material/material/material.module';
 import { HomeComponent } from './pages/home/home.component';
 import { SideProfileComponent } from './common/side-profile/side-profile.component';
+import { NetworkComponent } from './pages/network/network.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SideProfileComponent } from './common/side-profile/side-profile.compone
     RegisterComponent,
     UsersComponent,
     HomeComponent,
-    SideProfileComponent
+    SideProfileComponent,
+    NetworkComponent
   ],
   imports: [
     BrowserModule,

@@ -10,16 +10,17 @@ import { UserService } from 'src/app/service/user/user.service';
 })
 export class SideProfileComponent implements OnInit {
   totalPosts: any;
+  loggedInUser: any;
 
   constructor(private userService: UserService,
     private postsService: PostsService,
     private fileUploadService: FileUploadService) { }
 
   ngOnInit(): void {
-    let loggedInUser = this.userService.getUserData();
-    console.log(loggedInUser);
-    let photoId = loggedInUser.photoId;
-    let userId = loggedInUser._id;
+     this.loggedInUser = this.userService.getUserData();
+    console.log(this.loggedInUser);
+    let photoId = this.loggedInUser.photoId;
+    let userId = this.loggedInUser._id;
     // For getting the profile photo
     this.fileUploadService.getFileOrPhotoById(photoId).subscribe((response: any) => {
       console.log(response);
