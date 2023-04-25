@@ -22,7 +22,7 @@ export class FriendsService {
     return this.http.get(this.apiurl+ 'friends/' + id);
   }
 
-  updateFriendRequestById(updatedRequest: any){
-    return this.http.put(this.apiurl + 'friends/' + updatedRequest.id, updatedRequest)
+  updateFriendRequestById(id: any, updatedRequest: any){
+    return this.http.put(this.apiurl + 'friends/' + id, updatedRequest)
   }
 }

@@ -9,6 +9,30 @@
             <!-- Requests section -->
             <div *ngIf="allRequests?.length; else noRequests">
                 <div *ngFor="let post of allRequests;" class="friend-request">
+                    <h3 class="card-header">Pending Requests</h3>
+                    <div class="friend-request-card card">
+                        <div class="profile-picture">
+                            <img src="../../../assets/Images/user-icon.jpg">
+                        </div>
+                        <div class="user-details">
+                            <h1>
+                                <span *ngFor="let user of userData">
+                                    <a *ngIf="post.userId==user.id">{{user.firstName}} {{user.lastName}}</a>
+                                </span>
+                            </h1>
+                            <h2>
+                                <span *ngFor="let user of userData">
+                                    <span *ngIf="post.userId==user.id">{{user.email}}</span>
+                                </span>
+                            </h2>
+                        </div>
+                        <div class="friend-request-actions">
+                            <button class="button button-primary" (click)="approveRequest(post.friendId, post.id)">Accept</button>
+                            <button class="button button-secondary" (click)="cancelRequest(post.friendId, post.id)">Decline</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div *ngFor="let post of allRequests;" class="friend-request">
                     <header>
                         <button class="btn btn-primary">{{post.status}}</button>
                         <a><img class='profile-pic' src="../../../assets/Images/user-icon.jpg"></a>
@@ -23,7 +47,7 @@
                             </span>
                         </p>
                     </header>
-                </div>
+                </div> -->
             </div>
             <ng-template #noRequests>
                 <p class="default-text">You don't have any active requests !</p>

@@ -21,15 +21,7 @@ export class NetworkComponent implements OnInit {
     this.loggedInUser = this.userService.getUserData();
     console.log(this.loggedInUser);
 
-    this.friendsService.allRequests().subscribe((response: any) => {
-      console.log("allRequests", response);
-      response.forEach((element: any) => {
-        if (element.status == 'Request Pending' && element.friendId == this.loggedInUser._id) {
-          this.allRequests.push(element);
-        }
-      });
-      console.log("filteredRequests", this.allRequests);
-    })
+    this.getAllRequests();
 
     this.userService.allUsers().subscribe((response: any) => {
       // console.log("All Users", response);
@@ -37,8 +29,8 @@ export class NetworkComponent implements OnInit {
         var createdDate = new Date(element.createdDate);
         // this will display us only the users of 2023 and month april 
         // && it should not display the user who is logged in 
-        if (createdDate.getFullYear() == 2023 && createdDate.getMonth() == 3 
-        && element.id != this.loggedInUser._id) {
+        if (createdDate.getFullYear() == 2023 && createdDate.getMonth() == 3
+          && element.id != this.loggedInUser._id) {
           this.userData.push(element);
         }
       });
@@ -50,6 +42,17 @@ export class NetworkComponent implements OnInit {
     // })
   }
 
+  getAllRequests() {
+    this.friendsService.allRequests().subscribe((response: any) => {
+      console.log("allRequests", response);
+      response.forEach((element: any) => {
+        if (element.status == 'Request Pending' && element.friendId == this.loggedInUser._id) {
+          this.allRequests.push(element);
+        }
+      });
+      console.log("filteredRequests", this.allRequests);
+    })
+  }
 
   connect(id: any) {
     let sendRequest = {
@@ -59,6 +62,30 @@ export class NetworkComponent implements OnInit {
     }
     this.friendsService.createRequest(sendRequest).subscribe((response: any) => {
       this.toastr.success(response.message, 'Request Sent');
+    })
+  }
+
+  approveRequest(friendId: any, id: any) {
+    let sendRequest = {
+      userId: this.loggedInUser._id,
+      friendId: friendId,
+      status: "You are friend"
+    }
+    this.friendsService.updateFriendRequestById(id, sendRequest).subscribe((response: any) => {
+      this.toastr.success(response.message, 'Request Accepted');
+      this.getAllRequests();
+    })
+  }
+
+  cancelRequest(friendId: any, id: any) {
+    let sendRequest = {
+      userId: this.loggedInUser._id,
+      friendId: friendId,
+      status: "Request Cancelled"
+    }
+    this.friendsService.updateFriendRequestById(id, sendRequest).subscribe((response: any) => {
+      this.toastr.success(response.message, 'Request Cancelled');
+      this.getAllRequests();
     })
   }
 }

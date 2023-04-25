@@ -1,68 +1,162 @@
+// .friend-request {
+//     margin: 0 0 5% 0;
+//     border: 1px solid #D0D1D5;
+//     border-radius: 5px;
+//     padding: 12px;
+
+//     header {
+//         padding: 0;
+//         position: relative;
+
+//         button {
+//             position: absolute;
+//             border: none;
+//             height: auto;
+//             right: 0px;
+//         }
+
+//         &:before,
+//         &:after {
+//             content: "";
+//             /* 1 */
+//             display: table;
+//             /* 2 */
+//         }
+
+//         &:after {
+//             clear: both;
+//         }
+//     }
+
+//     .profile-pic {
+//         width: 60px;
+//         height: auto;
+//         float: left;
+//         margin-right: 8px;
+//     }
+
+//     .name {
+//         color: #385A97;
+//         font-size: 1.2rem;
+//         margin-bottom: 5px;
+//         text-transform: capitalize;
+//     }
+
+//     .email {
+//         font-size: 1rem;
+//         color: #90949C;
+//     }
+
+//     .name,
+//     .email {
+//         margin: 0;
+//     }
+
+//     .btn-primary{
+//         margin-top: 1%;
+//     }
+// }
+
 .friend-request {
     margin: 0 0 5% 0;
-    border: 1px solid #D0D1D5;
-    border-radius: 5px;
-    padding: 12px;
 
-    header {
-        padding: 0;
-        position: relative;
+    h3 {
+        color: #2141d2;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        margin-bottom: 2%;
+    }
 
-        button {
-            position: absolute;
-            border: none;
+    /** The Original Design **/
+    .friend-request-card {
+        display: flex;
+        width: 100%;
+        padding: 1.5%;
+        flex-direction: row;
+        align-items: center;
+        background-color: #fff;
+        border: none;
+        box-shadow: 3px 1px 11px -4px rgba(0,0,0,0.65);
+
+        .profile-picture {
+            width: 100px;
             height: auto;
-            right: 0px;
+            border-radius: 100%;
+            margin-right: 27px;
+            overflow: hidden;
+
+            img {
+                width: 100px;
+                height: 100%;
+            }
         }
 
-        &:before,
-        &:after {
-            content: "";
-            /* 1 */
-            display: table;
-            /* 2 */
+        h1,
+        h2 {
+            margin-bottom: 0;
+            margin-top: 0;
         }
 
-        &:after {
-            clear: both;
+        h1 {
+            color: #001D37;
+            font-size: 1.6rem;
+            text-transform: capitalize;
         }
-    }
 
-    .profile-pic {
-        width: 60px;
-        height: auto;
-        float: left;
-        margin-right: 8px;
-    }
+        h2 {
+            color: #9ea0a0;
+            font-size: 1rem;
+        }
 
-    .name {
-        color: #385A97;
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-        text-transform: capitalize;
-    }
+        .friend-request-actions {
+            margin-left: auto;
+            width: 180px;
+        }
 
-    .email {
-        font-size: 1rem;
-        color: #90949C;
-    }
 
-    .name,
-    .email {
-        margin: 0;
-    }
+        .button {
+            border-radius: 100px;
+            width: 100%;
+            padding: 10px 5px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
 
-    .btn-primary{
-        margin-top: 1%;
+            &:first-child {
+                margin-bottom: 5%;
+            }
+
+            &.button-primary {
+                background: #4364f7;
+                color: #fff;
+
+                &:hover {
+                    background: darken(#4364f7, 10%);
+                }
+            }
+
+            &.button-secondary {
+                background: #6F8493;
+                color: #fff;
+
+                &:hover {
+                    background: darken(#6F8493, 10%);
+                }
+            }
+        }
     }
 }
 
-.friend-connect{
+.friend-connect {
     padding: 2%;
-    .heading{
+
+    .heading {
         margin-bottom: 8%;
         font-size: 1.5rem;
     }
+
     .connect-card {
         width: auto;
         height: 220px;
@@ -71,7 +165,7 @@
         align-items: center;
         border-radius: 10px;
         margin-bottom: 30%;
-    
+
         & .user-image {
             height: 80px;
             width: 80px;
@@ -81,26 +175,26 @@
             background: #fff;
             border: 6px solid #4364f7;
         }
-    
+
         h2 {
             font-weight: 500;
             margin-top: 10%;
             font-size: 1.5rem;
             text-transform: capitalize;
         }
-    
+
         p {
             color: #6e8ca0;
             margin-top: 1%;
             font-family: Montserrat;
             font-size: 18px;
         }
-    
+
         .buttongroup {
             width: 100%;
             margin-top: auto;
             display: flex;
-    
+
             button {
                 flex: 1;
                 background: transparent;
@@ -112,12 +206,12 @@
                 background: 0.3s;
                 font-size: 1.2rem;
                 cursor: pointer;
-    
+
                 &:hover {
                     background-color: #d8dfff;
                 }
-    
-                .plus-icon{
+
+                .plus-icon {
                     width: 15px;
                     height: 15px;
                     margin-top: -1%;
