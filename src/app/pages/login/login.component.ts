@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit {
         let userData = JSON.parse(sessionStorage['userData']);
         let token = userData.token;
         console.log(token);
-        
+
         this.toastr.success("You have logged in successfully", 'Loggedin successfully')
-        this.router.navigate(['home'])
+        this.router.navigate(['home']);
       });
     } else {
       this.toastr.warning('Please enter valid data.');

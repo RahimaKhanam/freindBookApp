@@ -40,8 +40,8 @@ export class UserService {
     return this.http.post(this.apiurl + 'users/updateuserphotoId', userId)
   }
 
-  updateUser(updatedUser: any) {
-    return this.http.put(this.apiurl + 'users/' + updatedUser.id, updatedUser)
+  updateUser(id: any, updatedUser: any) {
+    return this.http.put(this.apiurl + 'users/' + id, updatedUser)
   }
 
   getUserData(){
