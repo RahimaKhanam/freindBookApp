@@ -9,7 +9,6 @@ import { UserService } from 'src/app/service/user/user.service';
 })
 export class FriendsComponent implements OnInit {
   allFriends: any = [];
-  userData: any = [];
   loggedInUser: any;
 
   constructor(private userService: UserService,
