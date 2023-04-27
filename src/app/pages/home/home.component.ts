@@ -11,7 +11,8 @@ import { UserService } from 'src/app/service/user/user.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  allPostsData: any;
+  allPostsData: any = [];
+  usersPosts: any = [];
   loggedInUser: any;
 
   createPostForm = this.builder.group({
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
     this.loggedInUser = this.userService.getUserData();
     console.log(this.loggedInUser);
     this.getAllPost();
+    this.getUsersPosts();
   }
 
   createPost() {
@@ -42,24 +44,58 @@ export class HomeComponent implements OnInit {
       profession: "President"
     }
     console.log(formData);
-    this.postsService.createPost(formData).subscribe((response: any)=>{
+    this.postsService.createPost(formData).subscribe((response: any) => {
       this.toastr.success(response.message, 'Post submitted successfully');
-      this.getAllPost();
+      this.getUsersPosts();
     })
   }
 
   getAllPost() {
-    this.postsService.allPosts().subscribe((response) => {
-      this.allPostsData = response;
+    this.postsService.allPosts().subscribe((response: any) => {
+      response.forEach((ele: any) => {
+        if (ele.userId != this.loggedInUser._id) {
+          this.allPostsData.push(ele)
+        }
+      });
       console.log(this.allPostsData, "AllPosts");
     })
+  }
+
+  getUsersPosts() {
+    let userId = this.loggedInUser._id;
+    // For getting the posts of the loggedIn user
+    this.postsService.getPostsByUserId(userId).subscribe((response: any) => {
+      this.usersPosts = response;
+      this.usersPosts.forEach((ele: any) => {
+        ele.updateFlag = false;
+      });
+      console.log(response, "LoggedInUserPosts");
+
+    })
+  }
+
+  updatePost(id: any) {
+    this.usersPosts.forEach((ele: any) => {
+      if (ele.id == id) {
+        ele.updateFlag = true;
+      }
+    });
   }
 
   deletePost(id: any) {
     console.log(id);
     this.postsService.deletePost(id).subscribe((response) => {
       this.toastr.success("Data deleted successfully", 'Deleted successfully');
-      this.getAllPost();
+      this.getUsersPosts();
     })
   }
+
+  saveUpdatedPost(form: any, postData: any){
+    console.log(form.form.value.postData, postData);
+    this.postsService.updatePost(postData.id, postData).subscribe((res: any)=>{
+      this.toastr.success("Post updated successfully", 'Updated successfully');
+      this.getUsersPosts();
+    })
+  }
+  
 }

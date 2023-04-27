@@ -33,8 +33,8 @@ export class PostsService {
     return this.http.post(this.apiurl + 'posts/updatemanyposts', updatePayLoad)
   }
 
-  updatePost(updatedPost: any){
-    return this.http.put(this.apiurl + 'posts/' + updatedPost.id, updatedPost)
+  updatePost(id: any, updatedPost: any){
+    return this.http.put(this.apiurl + 'posts/' + id, updatedPost)
   }
 
   deletePost(postId: any){

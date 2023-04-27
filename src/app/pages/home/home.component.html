@@ -21,11 +21,28 @@
             <!-- All posts section -->
             <div *ngFor="let post of allPostsData" class="all-posts">
                 <header>
+                    <a><img class='profile-pic' src="../../../assets/Images/user-icon.jpg"></a>
+                    <h1 class="name">
+                        <a>{{post.userName}}</a>
+                    </h1>
+                    <p class="date">{{post.createdDate | date:'mediumDate'}}, {{post.createdDate | date:'shortTime'}}
+                    </p>
+                </header>
+
+                <p class="caption">{{post.post}}</p>
+                
+            </div>
+        </div>
+        <div class="col-md-3">
+            <!-- Posts of loggedIn user -->
+            <h3 class="heading">Your Posts</h3>
+            <div *ngFor="let post of usersPosts" class="all-posts">
+                <header>
                     <span class="dropdown">
                         <a class="dropdown-toggle" data-bs-toggle="dropdown" role="button"
                             aria-expanded="false"></a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Update Post</a></li>
+                            <li><a class="dropdown-item" (click)="updatePost(post.id)">Update Post</a></li>
                             <li><a class="dropdown-item" (click)="deletePost(post.id)">Delete Post</a></li>
                         </ul>
                     </span>
@@ -37,8 +54,11 @@
                     </p>
                 </header>
 
-                <p class="caption">{{post.post}}</p>
-                
+                <p *ngIf="post.updateFlag == false" class="caption">{{post.post}}</p>
+                <form *ngIf="post.updateFlag" #myForm="ngForm" (ngSubmit)="saveUpdatedPost(myForm, post)">
+                    <input [(ngModel)]="post.post" name="postData" type="text" class="form-control my-2">
+                    <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Save</button>
+                </form>
             </div>
         </div>
     </div>
