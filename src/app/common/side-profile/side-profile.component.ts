@@ -14,6 +14,7 @@ export class SideProfileComponent implements OnInit {
   totalConnections: any;
   loggedInUser: any;
   allFriends: any = [];
+  userImage: any;
 
   constructor(private userService: UserService,
     private postsService: PostsService,
@@ -27,7 +28,8 @@ export class SideProfileComponent implements OnInit {
     let userId = this.loggedInUser._id;
     // For getting the profile photo
     this.fileUploadService.getFileOrPhotoById(photoId).subscribe((response: any) => {
-      console.log(response);
+      // converting blob to image format
+      this.createImageFromBlob(response);
     })
     // For getting the posts count
     this.postsService.getPostsByUserId(userId).subscribe((response: any) => {
@@ -46,7 +48,16 @@ export class SideProfileComponent implements OnInit {
       this.allFriends.length ? this.totalConnections = this.allFriends.length : this.totalConnections = 0;
       console.log("filteredFriends", this.allFriends);
     })
+  }
 
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.userImage = reader.result;
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
 }

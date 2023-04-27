@@ -1,5 +1,5 @@
 <div class="card sticky-top">
-    <img src="../../../assets/Images/user-icon.jpg" class="card-img-top" alt="user-icon">
+    <img [src]="userImage" class="card-img-top" alt="user-image">
     <ul class="list-group list-group-flush">
         <li class="list-group-item">{{loggedInUser.firstName}} {{loggedInUser.lastName}} </li>
         <li class="list-group-item">{{totalConnections}} Connections</li>

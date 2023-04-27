@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService,
     private postsService: PostsService,
-    private router: Router,
     private toastr: ToastrService,
     private builder: FormBuilder) { }
 
@@ -52,7 +51,7 @@ export class HomeComponent implements OnInit {
   getAllPost() {
     this.postsService.allPosts().subscribe((response) => {
       this.allPostsData = response;
-      console.log(this.allPostsData);
+      console.log(this.allPostsData, "AllPosts");
     })
   }
 
