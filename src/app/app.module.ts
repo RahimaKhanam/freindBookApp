@@ -15,6 +15,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SideProfileComponent } from './common/side-profile/side-profile.component';
 import { NetworkComponent } from './pages/network/network.component';
 import { FriendsComponent } from './pages/friends/friends.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FriendsComponent } from './pages/friends/friends.component';
     HomeComponent,
     SideProfileComponent,
     NetworkComponent,
-    FriendsComponent
+    FriendsComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
