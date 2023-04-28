@@ -33,16 +33,26 @@ export class LoginComponent implements OnInit {
     }
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      this.userService.authenticateUserLogin(userData).subscribe((result: any) => {
-        console.log(result);
-        sessionStorage.setItem('userData', JSON.stringify(result));
-        let userData = JSON.parse(sessionStorage['userData']);
-        let token = userData.token;
-        console.log(token);
+      this.userService.authenticateUserLogin(userData).subscribe({
+        next: (result: any) => {
+          console.log(result);
+          sessionStorage.setItem('userData', JSON.stringify(result));
+          let userData = JSON.parse(sessionStorage['userData']);
+          let token = userData.token;
+          console.log(token);
+          if (result?.isActive) {
+            this.toastr.success("User loggedIn successfully", 'Loggedin successfully')
+            this.router.navigate(['home']);
+          } else {
+            this.toastr.warning(result.message + ' Contact the System Admin.', 'LogIn Error')
+            this.router.navigate(['register']);
+          }
 
-        this.toastr.success("You have logged in successfully", 'Loggedin successfully')
-        this.router.navigate(['home']);
-      });
+        },
+        error: (err) => this.toastr.warning(err.message + 'Contact the system admin.', 'LogIn Error')
+      }
+
+      );
     } else {
       this.toastr.warning('Please enter valid data.');
       this.loading = false;
