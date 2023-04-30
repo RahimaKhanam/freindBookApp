@@ -30,10 +30,6 @@ export class FriendsComponent implements OnInit {
       });
       console.log("filteredFriends", this.allFriends);
     })
-
-    // this.userService.getUserById("6445526b54b3bd0c3cbd2312").subscribe((res: any) => {
-    //   console.log(res, "Saska");
-    // })
   }
 
 }

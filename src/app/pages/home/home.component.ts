@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
       this.toastr.success(response.message, 'Post submitted successfully');
       this.getUsersPosts();
     })
+    this.createPostForm.reset();
   }
 
   getAllPost() {
